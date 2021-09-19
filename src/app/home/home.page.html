@@ -11,60 +11,52 @@
   </ion-grid>
 
   
-
+  
   <i-div class="tarjeta" >
     <ion-grid fixed>
       <i-row>
 
+        <form method="POST">
         <ion-col size="12">
           <img src="../assets/icon/usuario.png" alt="" style="float: left; width: 20px; margin-top: 18%;">
           <ion-item>
-            <ion-label position="floating">Usuario</ion-label>
-            <ion-input type="text" placeholder="Digite su usuario"></ion-input>
+            <ion-label style="font-size:small; padding-top: 3px;" position="floating">Usuario</ion-label>
+            <ion-input  type="text" placeholder="Digite su usuario" required></ion-input>
           </ion-item>
         </ion-col>
       
         <ion-col size="12">
           <img src="../assets/icon/llave.png" alt="" style="float: left; width: 20px; margin-top: 18%;">
           <ion-item>
-            <ion-label position="floating">Contraseña</ion-label>
-            <ion-input type="password" placeholder="Digite su contraseña"></ion-input>
+            <ion-label style="font-size: small; padding-top: 3px;" position="floating">Contraseña</ion-label>
+            <ion-input  type="password" placeholder="Digite su contraseña" required></ion-input>
           </ion-item>
-        </ion-col>
-
-
-        <ion-col size="12">
-          <ion-text  style="text-align: center;">
-            <h5 style="font-size: small;">¿Cambiar contraseña?</h5>
-          </ion-text>
-          <ion-button ion-button (click)="showToast()" expand="block" fill="solid" shape="round">
-            Recuperar
-          </ion-button>
         </ion-col>
        
         
-        <ion-col size="12">
-          <hr>
-          <ion-button expand="" size="small" fill="solid" shape="round">
+        
+        <ion-button [routerLink]="['/bienvenido']" type="submit" value="submit" expand="block" shape="round" style="font-size:small;" fill="solid" >
             Ingresar
-          </ion-button>
-        </ion-col>
+        </ion-button>
+        </form>
+
+        
+        
+        
         <ion-col size="12">
-          <ion-button size="small" fill="solid" shape="round">
-            Registrar
-          </ion-button>
+          <hr style="width: auto;">
+          <ion-text  style="text-align: center;">
+            <h5 style="font-size: small;" ion-button (click)="showToast()">¿Perdiste tu contraseña?</h5>
+          </ion-text>
+          <ion-text  style="text-align: center;">
+            <h5 style="font-size: small;" ion-button (click)="ShowToast()">¿No tienes cuenta? Registrate</h5>
+          </ion-text>
         </ion-col>
-
-        
-
-        
-
-        
 
       </i-row>
     </ion-grid>
   </i-div>
-
+ 
   
   
 </ion-content>
