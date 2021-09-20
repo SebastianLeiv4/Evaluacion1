@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-bienvenido',
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bienvenido.page.scss'],
 })
 export class BienvenidoPage implements OnInit {
+  
+  usuario: string;
+  
+  constructor(private route: ActivatedRoute) {
 
-  constructor() { }
-
-  ngOnInit() {
+   this.usuario = this.route.snapshot.paramMap.get('nombre');
   }
+
+  
+
+  
+  ngOnInit() {
+
+  }
+
+
 
 }

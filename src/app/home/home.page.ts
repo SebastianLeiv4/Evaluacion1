@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController, ToastOptions, NavController } from '@ionic/angular';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
-import { CommonModule } from '@angular/common';
+import { FormBuilder, Validators } from '@angular/forms';
+import { BienvenidoPage } from '../bienvenido/bienvenido.page';
+import { Router } from '@angular/router';
 
 
 
@@ -12,44 +11,60 @@ import { CommonModule } from '@angular/common';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-
-@NgModule({
-  imports: [
-    CommonModule,
-    IonicModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
-  declarations: [HomePage]
-})
-
-
+  
 
 export class HomePage{
 
-  //nombre : "juan";
-  //contraseña : 1234;
-
+  isSubmitted = false;
   toastOptions: ToastOptions
-  constructor(private toast: ToastController, public navCtrl: NavController, private Toast: ToastController) {  }
+  nombre: string;
+  contrasena: string;
+  constructor(private toast: ToastController, public navCtrl: NavController, private Toast: ToastController, private formBuilder: FormBuilder, private router: Router) {
+    this.nombre = '';
+  }
 
-  /*verificar(Nombre: HTMLInputElement, Contraseña: HTMLInputElement){
+  get errorControl() {
+    return this.registrationForm.controls;
+  }
 
-    if (Nombre.value = this.nombre){
+  public errorMessages = {
+    nombre: [
+      { type: 'required', message: 'El nombre es requerido' },
+    ],
+    contrasena: [
+      { type: 'required', message: 'La contraseña en requerida' },
+    ],
+  }
 
-      console.log("hola")
-    }
+  profileForm = this.formBuilder.group({
+    nombre: '',
+    contrasena: ''
+  });
 
-  }*/
+  registrationForm = this.formBuilder.group({
+    nombre: ['', Validators.required],
+    contrasena: ['', Validators.required],
+  });
 
+  public submit() {
+    
+    this.router.navigate(['bienvenido',
+   {nombre: this.nombre},
+  ])
+    this.nombre = "";
+    this.contrasena = "";
+    
+  }
   
+
   async showToast() {
     const toast = await this.toast.create({
-      message: 'Su contraseña se ha cambiado!.',
+      message: 'Su contraseña se ha recuperado!.',
       duration: 2000,
       position: "top",
       animated: true,
       cssClass: 'my-custom-class',
+
       
     });
     toast.present();
