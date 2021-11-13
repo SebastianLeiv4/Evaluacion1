@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApirestService } from '../apirest.service';
+import { menuController } from '@ionic/core';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-comentarios',
@@ -12,12 +14,18 @@ export class ComentariosPage implements OnInit {
   TotalComentarios = [];
   listado3 = [];
   idPost: number;
-  constructor(private api:ApirestService, private route: ActivatedRoute) {
+  constructor(private api:ApirestService, private route: ActivatedRoute, private menu:MenuController) {
      this.route.params.subscribe(params => {
       this.idPost = params['id']; 
  });
     
    }
+
+
+  openFirst() {
+    this.menu.enable(true, 'first');
+    this.menu.open('first');
+  }
 
   ngOnInit() {
 
@@ -31,12 +39,7 @@ export class ComentariosPage implements OnInit {
     console.log(this.TotalComentarios);
     
     
-    /*let ObjPosts = JSON.parse(localStorage.getItem('TotalPosts'));
-    this.listado3 = this.api.listado3;
-    console.log(this.listado3);
-   
-    this.TotalComentarios = this.listado3.filter(post => post['postId'] == ObjPosts["id"])
-    console.log(this.TotalComentarios);*/
+    
   }
 
 }
