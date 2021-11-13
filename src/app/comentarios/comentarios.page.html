@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>comentarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor="let comentarios of TotalComentarios;">
+    <ion-item>
+      <ion-label>{{comentarios.body}}</ion-label>
+    </ion-item>
+  </div>
+</ion-content>

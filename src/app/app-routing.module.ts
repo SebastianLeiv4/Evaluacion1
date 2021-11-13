@@ -16,6 +16,10 @@ const routes: Routes = [
     path: 'bienvenido',
     loadChildren: () => import('./bienvenido/bienvenido.module').then( m => m.BienvenidoPageModule)
   },
+  {
+    path: 'comentarios/:id',
+    loadChildren: () => import('./comentarios/comentarios.module').then( m => m.ComentariosPageModule)
+  },
 ];
 
 @NgModule({

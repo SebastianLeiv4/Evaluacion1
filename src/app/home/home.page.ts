@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController, ToastOptions, NavController } from '@ionic/angular';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { BienvenidoPage } from '../bienvenido/bienvenido.page';
 import { Router } from '@angular/router';
+import { ApirestService } from '../apirest.service';
 
 
 
@@ -19,40 +20,115 @@ export class HomePage{
   toastOptions: ToastOptions
   nombre: string;
   contrasena: string;
-  constructor(private toast: ToastController, public navCtrl: NavController, private Toast: ToastController, private formBuilder: FormBuilder, private router: Router) {
-    this.nombre = '';
+  listado = [];
+  listado2 = [];
+  listado3 = [];
+  constructor(private toast: ToastController, public navCtrl: NavController, private Toast: ToastController, private formBuilder: FormBuilder, private router: Router, private api: ApirestService) {
+    
   }
+
+  ngOnInit(){
+   
+    this.api.getUsers();
+    this.api.getPosts();
+    this.api.getComments();
+    this.listado = this.api.listado;
+    this.listado2 = this.api.listado2;
+    this.listado3 = this.api.listado3;
+    /*let nombre2 = "Bret";
+    let array = [nombre2];
+    let filtro = this.listado.filter(listado => listado.username);
+    if (array = filtro){
+      console.log("Los datos son iguales");
+    }
+    else{
+      console.log("los datos no son iguales o una parte no existe");
+    }*/
+    
+
+
+    /*let nombre2 = ["Bret"];
+    let filtro = this.listado.filter(listado => listado.username);
+    if (nombre2 = filtro){
+      console.log("Existe relación");
+      console.log(filtro)
+    }
+    else{
+      console.log("No existe relacion")
+    }*/
+    
+  }
+
 
   get errorControl() {
     return this.registrationForm.controls;
   }
 
-  public errorMessages = {
-    nombre: [
-      { type: 'required', message: 'El nombre es requerido' },
-    ],
-    contrasena: [
-      { type: 'required', message: 'La contraseña en requerida' },
-    ],
-  }
-
-  profileForm = this.formBuilder.group({
-    nombre: '',
-    contrasena: ''
-  });
+  
 
   registrationForm = this.formBuilder.group({
     nombre: ['', Validators.required],
     contrasena: ['', Validators.required],
   });
 
+  
+
   public submit() {
     
-    this.router.navigate(['bienvenido',
-   {nombre: this.nombre},
-  ])
-    this.nombre = "";
-    this.contrasena = "";
+    let valor = this.registrationForm.get("nombre").value;
+    let contrasena = this.registrationForm.get("contrasena").value;
+    let filtro = this.listado.filter(listado => listado.username == valor);
+    
+
+    console.log(valor);
+    let objusuario = filtro.find(listado => listado.username == valor);
+
+    if (filtro.find(listado => listado.username == valor) && contrasena == "1234"){
+      localStorage.setItem("objusuario",JSON.stringify(objusuario));
+      this.router.navigate(['bienvenido',
+      {nombre: this.nombre},
+      ]);
+      this.nombre = "";
+      this.contrasena = "";
+    }
+    else{
+    }
+    
+
+    /*if (filtro.includes(valor)){
+      console.log("Son iguales")
+    }
+    else{
+      console.log("No son iguales")
+    }*/
+
+  
+
+    
+    /*let newArray = filtro.filter(function (el){
+      return el.username;
+    })*/
+    
+    
+    
+
+    /*if (array == filtro.find(filtro => filtro.username)){
+      console.log("Son iguales")
+    }
+    else{
+      console.log("No son iguales")
+    }*/
+    
+    /*if (valor == x){
+      this.router.navigate(['bienvenido',
+      {nombre: this.nombre},
+      ])
+      this.nombre = "";
+      this.contrasena = "";
+    }
+    else{
+      console.log("No puedes ingresar")
+    }*/
     
   }
   
@@ -70,7 +146,7 @@ export class HomePage{
     toast.present();
   }
 
-  async ShowToast() {
+  async Showtoast() {
     const Toast = await this.Toast.create({
       message: 'Su cuenta se ha creado!.',
       duration: 2000,
@@ -81,5 +157,18 @@ export class HomePage{
     });
     Toast.present();
   }
+
+  /*
+  obtenerPost(userId: number){
+
+   let listaPost = this.obtenerPost(userId);
+
+  }
+
+  obtenerComentarios(idPost: number){
+    let listaComentarios = this.listaComentarios(idPost);
+
+  }
+  */
 
 }
