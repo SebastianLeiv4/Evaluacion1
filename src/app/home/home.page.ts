@@ -24,7 +24,7 @@ export class HomePage{
   listado = [];
   listado2 = [];
   listado3 = [];
-  constructor(private toast: ToastController, public navCtrl: NavController, private Toast: ToastController, private formBuilder: FormBuilder, private router: Router, private api: ApirestService, private menu: MenuController) {
+  constructor(private toast: ToastController,private toasT : ToastController, public navCtrl: NavController, private Toast: ToastController, private formBuilder: FormBuilder, private router: Router, private api: ApirestService, private menu: MenuController) {
     this.menu.swipeGesture(false);
   }
 
@@ -77,7 +77,7 @@ export class HomePage{
       this.contrasena = "";
     }
     else{
-      
+      this.showtoasT();
     }
     
 
@@ -85,7 +85,18 @@ export class HomePage{
     
   }
   
-  
+  async showtoasT() {
+    const toasT = await this.toasT.create({
+      message: 'Su nombre de usuario o contraseña son incorrectos!',
+      duration: 2000,
+      position: "top",
+      animated: true,
+      cssClass: 'my-custom-class',
+
+      
+    });
+    toasT.present();
+  }
 
   async showToast() {
     const toast = await this.toast.create({
