@@ -6,6 +6,7 @@ import { menuController } from '@ionic/core';
 import { MenuController } from '@ionic/angular';
 
 
+
 @Component({
   selector: 'app-bienvenido',
   templateUrl: './bienvenido.page.html',
@@ -43,7 +44,7 @@ export class BienvenidoPage implements OnInit {
     
     this.postsUsuario = this.listado2.filter(post => post['userId'] == objusuario["id"]);
     
-    
+    localStorage.setItem("postsUsuario",JSON.stringify(this.postsUsuario));
 
   }
 

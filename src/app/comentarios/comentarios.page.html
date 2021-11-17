@@ -8,9 +8,16 @@
 </ion-header>
 
 <ion-content>
-  <div *ngFor="let comentarios of TotalComentarios;">
-    <ion-item>
-      <ion-label>{{comentarios.body}}</ion-label>
-    </ion-item>
-  </div>
+  <ion-list style="background-color: #fce997 !important;" lines="none">
+    <div style="text-align: center; color: rgb(185, 74, 30)"><h1>Comentarios</h1></div>
+    <div *ngFor="let comentarios of TotalComentarios;">
+      <ion-item>
+        <ion-text class="comment">
+          <div class="comment-name">{{comentarios.name}}</div>
+          <div class="comment-body">{{comentarios.body}}</div>
+        </ion-text>
+      </ion-item>
+    </div>
+  </ion-list>
+
 </ion-content>

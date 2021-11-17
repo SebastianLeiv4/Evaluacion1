@@ -38,7 +38,7 @@ export class ComentariosPage implements OnInit {
     this.TotalComentarios = this.listado3;
     console.log(this.TotalComentarios);
     
-    
+    localStorage.setItem("TotalComentarios",JSON.stringify(this.TotalComentarios));
     
   }
 

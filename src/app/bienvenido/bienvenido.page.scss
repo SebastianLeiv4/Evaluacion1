@@ -1,0 +1,22 @@
+.post{
+    box-shadow: 2px 2px 4px rgb(0 0 0 / 20%), 0 8px 16px rgb(0 0 0 / 10%);
+    border:rgba(112, 112, 112, 0.267) solid 1px;
+    border-radius: 5px; 
+    margin:0.5em;
+    padding:0.5em;
+  }
+  .post:hover{
+      background-color: rgb(235, 235, 235);
+  }
+  .post-title{
+    font-weight: bold;
+    color:rgb(70, 70, 70);
+  }
+  .post-body{
+    color:rgb(110, 110, 110);  
+  }
+
+  h1{
+    font-weight: bold;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
