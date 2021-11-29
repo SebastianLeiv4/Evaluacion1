@@ -11,14 +11,16 @@
   </ion-grid>
 
   
-  <i-div class="tarjeta">
+  <div class="tarjeta">
     <ion-grid fixed>
 
       <div style="display: flex; justify-content: center;">
         <small style="color: rgb(0, 0, 0); margin-top: 20px; font-size: 18px;text-align: center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Bienvenido</small>
       </div>
 
-      <i-row>
+      <ion-row>
+        
+      
         
 
         <form #formulario [formGroup]="registrationForm" (ngSubmit)="submit()" action="../bienvenido/bienvenido.page.html" method="POST">
@@ -67,9 +69,9 @@
           </ion-text>
         </ion-col>
 
-      </i-row>
+      </ion-row>
     </ion-grid>
-  </i-div>
+  </div>
  
   
   
